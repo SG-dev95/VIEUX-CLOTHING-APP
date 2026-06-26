@@ -1,0 +1,431 @@
+
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    srC: url('/font/CormorantGaramond-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    srC: url('/font/CormorantGaramond-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+body{
+    margin: 0;
+  max-height: max-content;
+  min-height: 100vh;
+  position: relative;
+  height: 100%;
+  overflow-X: hidden;
+  behavior: smooth;
+
+}
+
+.page-container{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+   /* display: flex;*/
+    position: relative;
+
+    justify-content: center;
+    align-items: center;
+    
+}
+.background-videos{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    margin: 0;
+}
+.overlay1{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+    margin: 0;
+    padding-top:100rem ;
+    overflow: hidden;
+  backdrop-filter: blur(40px);
+  background: rgba(0, 0, 0, 0.4);
+   background: transparent;
+    z-index: 0;
+}
+.loader{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.137);
+    backdrop-filter: blur(20px);
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    color: rgba(255, 255, 255, 0.596);
+    font-size: 3rem;
+     font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+    letter-spacing: 3px;
+
+}
+.loader h3{
+    z-index: 100;
+}
+
+.error{
+     position: fixed;
+    width: 100%;
+    top:0;
+    left:0;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.459);
+    
+    backdrop-filter: blur(20px);
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 2rem;
+     font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+    letter-spacing: 3px;
+
+}
+.error h3{
+    z-index: 100;
+}
+
+
+.return{
+    width:220px;
+    height: 30px;
+    position:absolute;
+    top:57%;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    text-decoration: none;
+     border-radius: 10px;
+}
+.return button{
+    width:100%;
+    height: 100%;
+    background:rgba(255, 255, 255, 0.87) ;
+    backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 10px;
+}
+.return button:hover{
+    transition: all 0.3s ease;
+    transform: scale(1.1);
+    background:rgba(0, 0, 0, 0.089) ;
+    color:rgba(255, 255, 255, 0.582);
+}
+
+.return button:active{
+    transition: all 0.3s ease;
+    transform: scale(1.1);
+    background:rgba(0, 0, 0, 0.575) ;
+    color:rgba(255, 255, 255, 0.699);
+}
+
+
+
+
+.product-nave{
+    
+position:absolute;
+top:10%;
+display: inline-flex;
+justify-content: center;
+width:100%;
+
+
+
+}
+
+.product-nave ul{
+    position: absolute;
+    top:1;
+    display: flex;
+    flex-direction: row;
+    gap:3rem;
+    padding: 5px;
+    background: transparent;
+ justify-content: center;
+    align-items: center;
+    z-index: 90;
+}
+.product-nave ul li{
+     justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    width: max-content;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.055);
+    backdrop-filter: blur(30px);
+    color:rgba(255, 255, 255, 0.63);
+    letter-spacing: 1px;
+    font-weight: 400;   
+    font-family: 'Cormorant Garamond';
+    border-radius: 10px;
+
+}
+
+.product-nave ul li a{
+    text-decoration: none;
+    width: 100%;
+      color:rgba(255, 255, 255, 0.63);
+
+}
+.product-nave ul li a:hover{
+  background: rgba(0, 0, 0, 0.041);
+  color: white;
+}
+
+.products-contaner{
+    position:absolute ;
+    top:15%;
+    width: 100%;
+    height: max-content;
+    background: transparent;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    top: 56%;
+}
+
+.main-products{
+    position: absolute;
+    width: 80%;
+    height: max-content;
+    background: rgba(255, 255, 255, 0.075);
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+     justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    padding: 1rem;
+}
+.main-products ul{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:1.3rem;
+    box-shadow: 1px 4px 20px rgba(0, 0, 0, 0.4);
+     justify-content: center;
+    align-items: center;
+}
+
+.main-products ul li{
+    width:210px;
+    height: 300px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    object-fit: cover;
+    filter: brightness(80%);
+    overflow: hidden;
+}
+
+.main-products ul li img{
+    width: 100%;
+    height: 100%;
+    
+}
+
+
+
+.flow{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items:center;
+    backdrop-filter:blur(30px);
+    background:rgba(0, 0, 0, 0.1);
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+transition:all 0.4s ease;
+
+}
+.span-contain{
+    position:absolute;
+    left:22%;
+    width:100%;
+    height:max-content;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    justify-content:center;
+    align-items:center;
+}
+.span-contain span{
+    text-transform:uppercase;
+    width:100%;
+font-size: 12px;
+letter-spacing: 4px;
+ font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+  color: #ffffffb4;
+}
+
+.tails{
+display: flex;
+flex-direction: row;
+gap: 0.2px;
+width: max-content;
+height: max-content;
+padding: 0.3rem;
+position: absolute;
+border: 1px solid rgba(233, 222, 222, 0.88);
+border-radius: 15px;
+top:85%;
+right: 3%;
+
+}
+.tails span{
+    width: 1px;
+    padding: 2px;
+    height: 1px;
+    margin: 2px;
+    background: rgba(255, 255, 255, 0.137);
+    border-radius: 100%;
+}
+.tails:hover{
+    border: 1px solid rgba(255, 255, 255, 0.151);
+}
+.tails:hover span{
+    background: rgba(0, 0, 0, 0.103);
+}
+.main-products ul li:hover{
+    transition:all 0.6s ease;
+transform:translateY(-5px) scale(1.1);
+}
+
+.main-products ul li:hover .flow{
+opacity:1;
+}
+
+.product-details{
+    width:100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    display:inline-flex ;
+    top:0;
+    background: rgba(0, 0, 0, 0.021);
+    backdrop-filter:blur(20px);
+    z-index: 99;
+}
+.product-details img{
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+    filter: brightness(80%);
+}
+.product-close{
+    position: fixed;
+    top: 13%;
+    right:3%;
+    width: max-content;
+    background: rgba(255, 255, 255, 0.342);
+    border: 1px solid rgba(255, 255, 255, 0.096);
+    border-radius: 100%;
+}
+.product-close img{
+    width: 13px;
+    height: 13px;
+}
+
+
+
+.pro-details{
+    display:flex;
+    flex-direction:row;
+    position: absolute;
+    top:30rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: max-content;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(20px);
+}
+
+.product-details1{
+    position: absolute;
+    left: 4%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size:13px;
+    color:rgba(255, 255, 255, 0.863);
+     font-family: 'Cormorant Garamond',serif;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.815);
+    letter-spacing: 3px;
+    width: 400;
+
+}
+.product-details1 h3{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+.product-remain{
+position:absolute;
+right: 4%;
+display: flex;
+flex-direction: column;
+gap:1.3rem;
+justify-content: center;
+align-items: center;
+ font-size:13px;
+    color:rgba(255, 255, 255, 0.863);
+     font-family: 'Cormorant Garamond',serif;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.product-remain button{
+    border: 1px solid rgba(255, 255, 255, 0.082);
+    background: rgba(0, 0, 0, 0.075);
+    backdrop-filter: blur(20px);
+    padding: 3px;
+    height: 35px;
+    border-radius: 10px;
+    width: 200px;
+    color:rgba(255, 255, 255, 0.712);
+    justify-content: center;
+    align-items: center;
+    font-size: 9px;
+    
+}
+
+.product-details button:hover{
+    background:rgba(4, 61, 87, 0.151) ;
+    transition: all 0.3s ease;
+}
+.product-details button:active{
+    background:rgba(0, 0, 0, 0.212) ;
+    transition: all 0.3s ease;
+}

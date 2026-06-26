@@ -1,0 +1,757 @@
+:root{
+    --wt-button-bg: #00000000;
+    --blc-button-bg: #ffffff21;
+    --font-color-white: #000000;
+    --font-color-black: #00000054;
+    --white-color:white;
+    --font-family: 'Arial, sans-serif';
+    --big-f-color: #e6dcdc21;
+    --big-f-black-color: #ffffffa8;
+}
+
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    srC: url('/font/CormorantGaramond-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    srC: url('/font/CormorantGaramond-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+body{
+    margin: 0;
+  max-height: max-content;
+  min-height: 100vh;
+  position: relative;
+  height: 100%;
+  overflow-X: hidden;
+  behavior: smooth;
+
+}
+
+.contact-container{
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+   /* display: flex;*/
+
+
+    position: relative;
+
+    justify-content: center;
+    align-items: center;
+    
+}
+.background-videos{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    margin: 0;
+}
+.overlay1{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+    margin: 0;
+    padding-top:100rem ;
+    overflow: hidden;
+  backdrop-filter: blur(13px);
+  background: rgba(0, 0, 0, 0.4);
+   background: transparent;
+    z-index: 0;
+}
+
+
+.header{
+    width: 100%;
+    height: max-content;
+    display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 2%;
+        background: rgba(0, 0, 0, 0.541);
+        z-index: 300;
+
+}
+.header h2{
+    font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.767);
+    
+    letter-spacing: 3px;
+    
+width: 100%;
+justify-content: center;
+align-items: center;
+display: inline-flex;
+   
+    font-size: 14px;
+    height: 19px;
+
+}
+.logins{
+    margin-top: 1rem;
+    z-index:500;
+}
+
+.mother-heros{
+    position: absolute;
+    top:9%;
+
+    width: 100%;
+    height: 400px;
+       background: rgba(0, 0, 0, 0.541);
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+     z-index: 98;
+     font-size: 3rem;
+        font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.769);
+    letter-spacing: 3px;
+    
+}
+
+.mother-intel{
+    position: absolute;
+    left: 10%;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+}
+
+.animated-words{
+    position:relative;
+   display: inline-block;
+
+}
+.animated-words span{
+    position:absolute;
+    top:0;
+    left:10;
+    opacity:0;
+    animation: fade-out  9s infinite;
+
+}
+
+.animated-words span:nth-child(1){
+     animation-delay: 0s;
+}
+
+.animated-words span:nth-child(2){
+     animation-delay: 3s;
+}
+
+.animated-words span:nth-child(3){
+     animation-delay: 6s;
+}
+
+@keyframes fade-out {
+0%{
+    opacity: 0;
+}
+10%{
+    opacity: 1;
+}
+33%{
+    opacity: 1;
+}
+43%{
+    opacity: 0;
+}
+100%{
+    opacity:0;
+}
+}
+
+
+
+
+
+.image{
+   
+    position:absolute;
+    right:-35%;
+    width:100%;
+  height:max-content;
+  justify-content:center;
+  align-items:center;
+  display:inline-flex;
+}
+.image img{
+    width:290px;
+     height:380px;
+    opacity:0.6;
+   /* border-radius:50px*/
+
+}
+
+
+.details-rows{
+
+  height: max-content;
+  
+  display: flex;
+  /*flex-direction: row;*/
+ 
+  gap: 1.4rem;
+  width: 100%;
+  position: absolute;
+  top: 65%;
+  left:-20%;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.details-rows .nav-group{
+
+  
+height: max-content;
+ 
+  text-align: center;
+  width: 150px;
+ position: relative;
+}
+.details-rows  button {
+ background: transparent;
+  font-size: 13px;
+  color: #ffffff;
+  border: none;
+  text-transform: uppercase;
+ font-family: 'Cormorant Garamond';
+ letter-spacing: 1px;
+ list-style: none;
+ font-weight: 300;
+ gap:4rem;
+}
+.lists{
+  position:absolute;
+  top: 100%;
+  margin-top: 1%;
+  margin-left:-4%;
+  width: 100%;
+  
+ justify-content: center;
+ align-items: center;
+  
+}
+
+
+
+.details-rows ul{
+  display: flex;
+  flex-direction: column;
+ justify-content: center;
+ align-items: center;
+
+  gap: 2px;
+  list-style: none;
+
+
+/*margin-top: 5%*/
+  width: 110px;
+  height: max-content;
+
+}
+.details-rows ul li{
+  width: 120px;
+  height: 35px;
+  border:1px solid rgba(255, 255, 255, 0.034);
+  background: rgba(0, 0, 0, 0.671);
+  backdrop-filter: blur(20px);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  
+
+
+}
+.details-rows ul li a{
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff65;
+}
+.details-rows ul li a:hover{
+  background: rgba(255, 255, 255, 0.055);
+}
+
+
+
+.disco{
+   
+  width: 100%;
+  height: max-content;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 120%;
+  
+
+}
+.disco h3{
+  color:white;
+  font-size: 1.3rem;
+ 
+letter-spacing: 4px;
+
+ font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+  color: #ffffffc5;
+} 
+.lists-items{
+    width:max-content;
+    height:max-content;
+    display:flex;
+    flex-direction:row;
+
+}
+.lists3{
+    position:absolute;
+    top:150%;
+    width:20px;
+    font-size:2rem;
+    left:8%;
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+letter-spacing: 4px;
+ font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+    color:white;
+
+}
+.lists4{
+    position:absolute;
+    gap:1rem;
+     display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+
+.lists6{
+    position:absolute;
+    gap:1rem;
+    top:5rem;
+     display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+
+
+
+.lists7{
+    position:absolute;
+    gap:1rem;
+    top:8rem;
+     display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+.lists8{
+
+ position:absolute;
+   border: 1px solid rgba(255, 255, 255, 0.08);
+   background:rgba(0, 0, 0, 0.17);
+   backdrop-filter:blur(20px);
+   padding:1rem;
+   width:130px;
+   color:white;
+   border-radius:16px;
+    top:15rem;
+
+}
+.lists8:hover{
+     background: rgba(0, 0, 0, 0.59); 
+}
+
+
+
+
+
+
+
+
+
+.top-hight{
+    position:absolute;
+    top:300%;
+    width:100%;
+    height:max-content;
+    justify-content:center;
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+}
+ .top1{
+   
+   
+font-size: 1.3rem;
+letter-spacing: 4px;
+ font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+  color: #ffffffb4;
+}
+
+
+
+ .top2{
+   
+   
+font-size: 14px;
+letter-spacing: 1px;
+ font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+  color: #ffff
+ }
+
+.hight{
+    position:relative;
+    top:20rem;
+    width:100%;
+    height:max-content;
+    justify-content:center;
+    align-items:center;
+    display:flex;
+
+}
+
+.top-images {
+    position:absolute;
+    justify-content:center;
+    align-items:center;
+    display:flex;
+    flex-direction:row;
+    gap:2rem;
+    width:100%;
+    height:max-content;
+   
+    
+}
+
+.one{
+    width:230px;
+    height:270px;
+    position:relative;
+    object-fit:cover;
+    filter:brightness(80%);
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+.one img{
+    width:100%;
+    height:100%;
+     
+}
+.flow{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items:center;
+    backdrop-filter:blur(30px);
+    background:rgba(0, 0, 0, 0.1);
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+transition:all 0.4s ease;
+
+}
+.span-contain{
+    position:absolute;
+    left:22%;
+    width:100%;
+    height:max-content;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    justify-content:center;
+    align-items:center;
+}
+.span-contain span{
+    text-transform:uppercase;
+    width:100%;
+font-size: 12px;
+letter-spacing: 4px;
+ font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+  color: #ffffffb4;
+}
+
+.tails{
+display: flex;
+flex-direction: row;
+gap: 0.2px;
+width: max-content;
+height: max-content;
+padding: 0.3rem;
+position: absolute;
+border: 1px solid rgba(233, 222, 222, 0.88);
+border-radius: 15px;
+top:85%;
+right: 3%;
+
+}
+.tails span{
+    width: 1px;
+    padding: 2px;
+    height: 1px;
+    margin: 2px;
+    background: rgba(0, 0, 0, 0.116);
+    border-radius: 100%;
+}
+.tails:hover{
+    border: 1px solid rgba(255, 255, 255, 0.151);
+}
+.tails:hover span{
+    background: rgba(255, 255, 255, 0.103);
+}
+.one:hover{
+    transition:all 0.6s ease;
+transform:translateY(-5px) scale(1.1);
+}
+
+.one:hover .flow{
+opacity:1;
+}
+
+
+.item{
+    
+ position:absolute;
+   border: 1px solid rgba(255, 255, 255, 0.08);
+   background:rgba(0, 0, 0, 0.17);
+   backdrop-filter:blur(20px);
+   padding:1rem;
+   width:250px;
+   color:white;
+   border-radius:16px;
+    top:40rem;
+    left:42%;
+}
+.item:hover{
+    background: rgba(0, 0, 0, 0.59);
+}
+.footer-main{
+   position: absolute;
+    top:500%;
+
+    width: 100%;
+    height: 700px;
+     
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+     z-index: 99;
+     font-size: 1.5rem;
+        font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.769);
+    letter-spacing: 3px;
+    
+}
+
+.footer-main .item1{
+position:absolute;
+width:100%;
+margin-top:0px;
+top:0px;
+left:43%;
+font-size:1.8rem;
+
+}
+.footer-main  h2{
+    position:absolute;
+margin-top:-18rem;
+
+}
+.footer-group{
+     position: absolute;
+    left: 16%;
+    top:34%;
+    width: 160px;
+    height: max-content;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: row;
+    z-index:1000;
+      font-size: 3rem;
+}
+
+.footer-spans{
+     position:relative;
+   display: inline-block;
+ 
+}
+
+.footer-spans span{
+    position:absolute;
+    top:43;
+    left:0;
+    opacity:0;
+    color:rgb(255, 255, 255);
+    font-size: 4rem;
+    animation: fade-in  12s infinite;
+
+
+}
+
+.footer-spans span:nth-child(1){
+     animation-delay: 0s;
+}
+
+.footer-spans span:nth-child(2){
+     animation-delay: 3s;
+}
+
+.footer-spans span:nth-child(3){
+     animation-delay: 6s;
+}
+.footer-spans span:nth-child(4){
+     animation-delay: 9s;
+}
+@keyframes fade-in {
+0%{
+    opacity: 0;
+}
+10%{
+    opacity: 1;
+}
+33%{
+    opacity: 1;
+}
+43%{
+    opacity: 0;
+}
+100%{
+    opacity:0;
+}
+}
+
+
+
+.footer-img{
+          position: absolute;
+    right: -90%;
+    top:18%;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+}
+
+.img-spans{
+     position:relative;
+   display: inline-block;
+ 
+}
+.img-spans img{
+width:440px;
+height:360px;
+border-radius:20px;
+box-shadow:1px 8px 32px rgba(0,0,0,0.4);
+border:1px solid rgba(0, 0, 0, 0.2);
+  position:absolute;
+    top:0;
+    right:10;
+    opacity:0;
+    animation: fades-out  12s infinite;
+}
+
+
+.img-spans img:nth-child(1){
+     animation-delay: 0s;
+}
+
+.img-spans img:nth-child(2){
+     animation-delay: 3s;
+}
+
+.img-spans img:nth-child(3){
+     animation-delay: 6s;
+}
+.img-spans img:nth-child(4){
+     animation-delay: 9s;
+}
+
+
+
+@keyframes fades-out {
+0%{
+    opacity: 0;
+}
+10%{
+    opacity: 1;
+}
+33%{
+    opacity: 1;
+}
+43%{
+    opacity: 0;
+}
+100%{
+    opacity:0;
+}
+}
+
+
+.img-button{
+
+ position:absolute;
+   border: 1px solid rgba(255, 255, 255, 0.08);
+   background:rgba(0, 0, 0, 0.17);
+   backdrop-filter:blur(20px);
+   padding:1rem;
+   width:220px;
+   color:white;
+   border-radius:16px;
+    top:31rem;
+    left:25%;
+
+}
+.img-button:hover{
+     background: rgba(0, 0, 0, 0.59); 
+}
+
+
+
+
+.path{
+    position:absolute;
+    top:600%;
+   
+opacity:0;
+    z-index: 200;
+}
