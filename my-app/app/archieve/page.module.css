@@ -345,9 +345,11 @@ transition: all 0.3s ease;
     position: fixed;
     display:inline-flex ;
     top:0;
+    left:0;
+    opacity: 1;
     background: rgba(0, 0, 0, 0.021);
     backdrop-filter:blur(20px);
-    z-index: 99;
+    z-index: 200;
 }
 .product-details img{
     position: absolute;
@@ -361,7 +363,9 @@ transition: all 0.3s ease;
     top: 13%;
     right:3%;
     justify-content: center;
+    display: inline-flex;
     align-items: center;
+    padding:9px;
     width: max-content;
     background: rgba(255, 255, 255, 0.342);
     border: 1px solid rgba(255, 255, 255, 0.096);

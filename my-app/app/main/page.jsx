@@ -198,7 +198,7 @@ className={styles['background-videos']} />
 </div>
 
 <div className={styles['one']}>
-<img src="./pex3.jpg" alt="" />
+<img src="./xels3.jpg" alt="" />
   <div className={styles['flow']}>
     <div className={styles['span-contain']}>
     <span>Name: CLASSY SUIT</span>
@@ -211,7 +211,7 @@ className={styles['background-videos']} />
 </div>
 </div>
  <div className={styles['one']}>
-<img src="./stand.jpg" alt="" />
+<img src="./xels2.jpg" alt="" />
  <div className={styles['flow']}>
  <div className={styles['span-contain']}>
     <span>Name: OFFICE SUIT</span>
@@ -225,7 +225,7 @@ className={styles['background-videos']} />
 </div>
 
 <div className={styles['one']}>
-<img src="style.jpg" alt="" />
+<img src="xels.jpg" alt="" />
  <div className={styles['flow']}>
      <div className={styles['span-contain']}>
     <span>Name: STYLISH SUIT</span>

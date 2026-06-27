@@ -13,7 +13,7 @@ export default function ArchiveLogic() {
   const [collection, setCollection] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  
+    const [showDetail, setshowDetail] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   
   const { addCart } = useCart();
@@ -121,7 +121,9 @@ export default function ArchiveLogic() {
                 </div>
                 
           
-                <div className={styles["tails"]} onClick={() => setSelectedProduct(product)}>
+                <div className={styles["tails"]} onClick={() => {
+                  setSelectedProduct(product) 
+                  setshowDetail(true)}}>    
                   <span></span>
                   <span></span>
                   <span></span>
@@ -133,32 +135,28 @@ export default function ArchiveLogic() {
       </div>
 
      
-      {selectedProduct && (
-        <div className={styles["product-details"]}>
-        
-          <button className={styles["product-close"]} onClick={() => setSelectedProduct(null)}>
-            <img src="/x.svg" alt="Close modal"/>
-          </button>
-
-          <img src={selectedProduct.image} alt={selectedProduct.name}/>
-
-          <div className={styles["pro-details"]}>
-            <div className={styles["product-details1"]}>
-              <h3 className={styles["product-deat"]}>NAME: {selectedProduct.name}</h3>
-              <p>PRICE: ${selectedProduct.price}</p>
-              <p>{selectedProduct.description}</p>
-            </div>
-
-            <div className={styles["product-remain"]}>
-         
-              <p>Sizes: {selectedProduct.sizes ? selectedProduct.sizes.join(', ') : 'N/A'}</p>
-              
-    
-              <button onClick={() => addCart(selectedProduct)}>Add to Cart</button>
-            </div>
-          </div>
-        </div>
-      )}
+     {showDetail && selectedProduct && (
+               <div className={styles["product-details"]}>
+                 <button className={styles["product-close"]} onClick={() => setshowDetail(false)}>
+                   <img src="/x.svg" alt="Close view"/>
+                 </button>
+     
+                 <img src={selectedProduct.image} alt={selectedProduct.name}/>
+     
+                 <div className={styles["pro-details"]}>
+                   <div className={styles["product-details1"]}>
+                     <h3 className={styles["product-deat"]}>NAME: {selectedProduct.name}</h3>
+                     <p>PRICE: ${selectedProduct.price}</p>
+                     <p>{selectedProduct.description}</p>
+                   </div>
+     
+                   <div className={styles["product-remain"]}>
+                     <p>Sizes: {selectedProduct.sizes ? selectedProduct.sizes.join(', ') : 'S, M, L, XL'}</p>
+                    <button onClick={() => addCart(selectedProduct)}>Add Cart</button>
+                   </div>
+                 </div>
+               </div>
+             )}
     </div>
   );
 }

@@ -80,7 +80,7 @@ export default function Search() {
 
         <div className="Search-cont">
           {results.length > 0 ? (
-            <div className="Search-eng">
+         
               <ul className="Search-engine">
                 {results.map((product) => (
                   <li key={product.id} className="Search-display">
@@ -103,12 +103,12 @@ export default function Search() {
                   </li>
                 ))}
               </ul>
-            </div>
+           
           ) : (  
             query && <p className="noarch">NO ARCHIVE FOUND</p>
           )}
+          </div>
         </div>
       </div>
-    </div>
   );
 }

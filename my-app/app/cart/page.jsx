@@ -26,14 +26,24 @@ export default function Cart() {
   }
 
   return (
-    <div className={styles['container']}>
 
+    <div className={styles['container']}>
+  
+         <video  
+        src="/drop.mp4" 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        className={styles['background-videos']} 
+      />
+      <div className={styles['overlay1']}></div>
       <div className={styles['Top-height']}>
         <h3>TOP HIGHLIGHTS</h3>
         <div className={styles['Top-images']}>
           <img src="/pex2.jpg" alt="Highlight design variant 1"/>
-          <img src="/pex3.jpg" alt="Highlight design variant 2"/>
-          <img src="/dark.png" alt="Highlight design variant 3"/>
+          <img src="/xels3.jpg" alt="Highlight design variant 2"/>
+          <img src="/xels4.jpg" alt="Highlight design variant 3"/>
         </div>
         
         <Link href="/product">
