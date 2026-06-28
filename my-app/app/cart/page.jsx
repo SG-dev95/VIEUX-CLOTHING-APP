@@ -110,7 +110,7 @@ export default function Cart() {
             <span className={styles['item-sub']}>SUBTOTAL:</span>
             <span className={styles['item-formate']}>${formattedTotal}</span>
           </div>
-          <button className={styles['item-to']}>PROCEED TO REGISTER</button>
+          <button className={styles['item-to']}>PROCEED TO CHECKOUT</button>
         </footer>
 
       </div>

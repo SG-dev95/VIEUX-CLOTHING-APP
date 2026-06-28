@@ -168,20 +168,20 @@ BRANDS
 <div className={!isactive ? styles.links1:styles.hidden1}>
 
   <ul className={styles['footer-listS']}>
-    <li><Link href="/classic"> Gucci
+    <li><Link href="/GUCCI"> GUCCI
    
     </Link>
     </li>
-    <li><Link href="/casual">👚Prada
+    <li><Link href="/PRADA">👚PRADA
    
     </Link>
     </li>
-    <li><Link href="/formal"> Versace
+    <li><Link href="/VERSACI"> VERSACI
    
    
     </Link>
     </li>
-    <li><Link href="/sportswear">Fashionova
+    <li><Link href="/FASIONOVA">FASIONOVA
 
   
     </Link>

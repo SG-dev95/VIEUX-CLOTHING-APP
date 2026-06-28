@@ -50,21 +50,21 @@ return(
 
   
   <ul className={styles["brand-list lists"]}>
-    <li><Link href="/gucci">Gucci
+    <li><Link href="/GUCCI">GUCCI
   
     </Link>
     </li>
-    <li><Link href="/prada">Prada
+    <li><Link href="/PRADA">PRAD
     
   
     </Link>
     </li>
-    <li><Link href="/versace">Versace
+    <li><Link href="/VERSACI">VERSACE
     
  
     </Link>
     </li>
-    <li><Link href="/fashionova">Fashionova
+    <li><Link href="/FASIONOVA">FASIONOVA
     
    
     </Link>

@@ -10,6 +10,8 @@ export function CartProvider({ children }) {
     if (typeof window !== "undefined") {
       const savedCart = localStorage.getItem("vieux-cart");
       if (savedCart) {
+
+        
         try {
           return JSON.parse(savedCart);
         } catch (error) {

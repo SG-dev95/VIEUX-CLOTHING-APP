@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import fs from 'fs';
 import path from 'path';
 
-// 1. FIXED: Placed at the top and updated the fallback to preserve unique names
 function luxuryTitles(originalTitle, category) {
   if (category === "VINTAGE") return "Nero Distressed Canvas Silhouette";
   if (category === "CLASSIC") return "Monochrome Tailored Essential Blazer";
@@ -56,7 +55,7 @@ clothItems.forEach((item, index) => {
     assignedCategories = "INFORMAL";
   } 
   
-  // 4. FORMAL (Tailored blazers, suits, elegant dress wear)
+  
   else if (title.includes('dress') || title.includes('suit') || title.includes('blazer')) {
     assignedCategories = "FORMAL";
   }
@@ -107,8 +106,6 @@ clothItems.forEach((item, index) => {
       cloths: catalogData[catName]
     }));
 
-    // 2. FIXED: Safe guard for serverless environments. 
-    // This only writes the file on your local machine, preventing crashes online.
     if (process.env.NODE_ENV === 'development') {
       try {
         const filePath = path.join(process.cwd(), 'vieux-cached-products.json');

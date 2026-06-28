@@ -2,12 +2,12 @@
 
 import styles from './page.module.css';
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation'; // 🚀 Import this hook
+import { useParams } from 'next/navigation'; 
 import Link from "next/link"; 
 import { useCart } from '@/app/context/CartContext';
 export default function CategoryPage() {
   const params = useParams();
-  // This looks at your folder brackets and grabs it no matter what you named it!
+ 
   const categoryParam = params.categoryName || params.id || params.category;
 
   const [isLoading, setisLoading] = useState(true);
@@ -33,7 +33,6 @@ useEffect(() => {
         return;
       }
 
-      // 📢 UPDATE THIS PATH IF YOUR FOLDER IS SINGULAR (/api/product)
       const apiPath = '/api/products'; 
       console.log(`📡 [2/4] Knocking on backend API door at: ${apiPath}`);
       

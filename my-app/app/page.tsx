@@ -3,12 +3,10 @@
 import Link from "next/link";
 import { useState } from 'react';
 export default function Home() {
-      const categories = ["CLASSIC","OLD SCHOOL","VINTAGE","MODERN",
-        "CULTURAL","CASUAL","FORMAL","INFORMAL"]
-
+        const categories = ["CLASSIC","OLD-SCHOOL","VINTAGE","MODERN","CULTURAL","CASUAL","FORMAL","INFORMAL"]
 
         
-            const brand = ["GUCCI","VERSACHI","FASHIONOVA","PRADA"]
+            
 const [OpenMenu,setOpenMenu]= useState(null);
 
 const toggleMenu = (menuName: string) => { 
@@ -46,15 +44,14 @@ className="background-video" />
  <div className="lists">
   <ul className="category-list lists">
      <li> <Link href="/archieve">ALL</Link> </li>
-{categories.map((cat)=>( 
- 
-    <li key={cat}>
-        <Link href={`/products?category-${cat.toLowerCase()}`}>
-     
-        {cat}
-        </Link>
-    </li>
-))}
+  
+  {categories.map((cat) => (
+            <li key={cat}>
+              <Link href={`/categories/${cat.toLowerCase().replace(' ', '-')}`}>
+                {cat}
+              </Link>
+            </li>
+          ))}
   </ul>
   
 </div>
@@ -71,13 +68,28 @@ className="background-video" />
   
   <ul className="brand-list lists">
    
-{brand.map((b)=>( 
-    <li key={b}>
-        <Link href={`/products?category-${b.toLowerCase()}`}>
-        {b}
+
+    <li>
+        <Link href="/GUCCI">
+      GUCCI
         </Link>
     </li>
-))}
+      <li>
+        <Link href="/FASIONOVA">
+        FASIONOVA
+        </Link>
+    </li>
+      <li>
+        <Link href="/VERSACI">
+      VERSACI
+        </Link>
+    </li>
+      <li>
+        <Link href="/PRADA">
+      PRADA
+        </Link>
+    </li>
+
   </ul>
 </div>
 )}

@@ -1,0 +1,124 @@
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    srC: url('/font/CormorantGaramond-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    srC: url('/font/CormorantGaramond-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+body{
+    margin: 0;
+  max-height: max-content;
+  min-height: 100vh;
+  position: relative;
+  height: 100%;
+  overflow-X: hidden;
+  behavior: smooth;
+
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+   /* display: flex;*/
+
+
+    position: relative;
+
+    justify-content: center;
+    align-items: center;
+    
+}
+.background-videos{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    margin: 0;
+}
+.overlay1{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+    margin: 0;
+    padding-top:100rem ;
+    overflow: hidden;
+  backdrop-filter: blur(13px);
+  background: rgba(0, 0, 0, 0.4);
+   background: transparent;
+    z-index: 0;
+}
+
+.tain{
+    width: 100%;
+    height: max-content;
+    position: absolute;
+    top:30%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+}
+.tain h3{
+  font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.274);
+    font-size: 1.7rem;
+    letter-spacing: 3px;
+  
+}
+.tain p{
+    font-family: 'Cormorant Garamond',serif;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.274);
+    font-size: 1rem;
+    letter-spacing: 3px;
+
+}
+
+
+.return{
+    width:220px;
+    height: 30px;
+   
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    text-decoration: none;
+     border-radius: 10px;
+}
+.return button{
+    width:100%;
+    height: 100%;
+    background:rgba(255, 255, 255, 0.87) ;
+    backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 10px;
+}
+.return button:hover{
+    transition: all 0.3s ease;
+    transform: scale(1.1);
+    background:rgba(0, 0, 0, 0.089) ;
+    color:rgba(255, 255, 255, 0.582);
+}
+
+.return button:active{
+    transition: all 0.3s ease;
+    transform: scale(1.1);
+    background:rgba(0, 0, 0, 0.575) ;
+    color:rgba(255, 255, 255, 0.699);
+}

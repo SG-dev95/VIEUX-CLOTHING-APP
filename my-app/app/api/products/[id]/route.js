@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-// Reusable Luxury Title Generator matching your main API logic
 function luxuryTitles(originalTitle, category) {
   if (category === "VINTAGE") return "Nero Distressed Canvas Silhouette";
   if (category === "CLASSIC") return "Monochrome Tailored Essential Blazer";
@@ -15,7 +14,6 @@ function luxuryTitles(originalTitle, category) {
   return `Vieux Luxury ${category.charAt(0) + category.slice(1).toLowerCase()} - ${cleanTitle}`;
 }
 
-// Production Fallback: Rebuilds the nested catalog array layout in memory if JSON cache doesn't exist
 function generateCatalogInMemory(rawProducts) {
   const clothItems = rawProducts.filter(
     item => item.category === "men's clothing" || item.category === "women's clothing"
@@ -67,18 +65,18 @@ function generateCatalogInMemory(rawProducts) {
 
 export async function GET(request, { params }) {
   try {
-    // 1. Properly unwrap the parameters passed by Next.js
+    
     const { id } = await params; 
     let catalog = null;
 
     const filepath = path.join(process.cwd(), "vieux-cached-products.json");
     
-    // 2. Try to grab local storage data during development
+    
     if (fs.existsSync(filepath)) {
       const fileContent = fs.readFileSync(filepath, 'utf-8');
       catalog = JSON.parse(fileContent);
     } else {
-      // 3. PRODUCTION FAILSAFE: Rebuild the collection data dynamically if running on a live serverless cloud
+      
       console.log("JSON Cache absent on cloud instance disk. Re-processing array structure dynamically...");
       const res = await fetch('https://fakestoreapi.com/products');
       if (!res.ok) throw new Error("External api is unreachable");
@@ -87,7 +85,7 @@ export async function GET(request, { params }) {
       catalog = generateCatalogInMemory(rawProducts);
     }
 
-    // 4. Your clean lookup loop (unchanged, works perfectly!)
+    
     let foundProduct = null;
     for (const section of catalog) {
       const match = section.cloths.find((item) => String(item.id) === String(id));
