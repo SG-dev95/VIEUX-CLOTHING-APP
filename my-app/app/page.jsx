@@ -9,7 +9,7 @@ export default function Home() {
             
 const [OpenMenu,setOpenMenu]= useState(null);
 
-const toggleMenu = (menuName: string) => { 
+const toggleMenu = (menuName) => { 
   if(OpenMenu === menuName){
     setOpenMenu(null)
   }else{
