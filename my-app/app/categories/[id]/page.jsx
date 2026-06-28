@@ -109,7 +109,7 @@ useEffect(() => {
       <div className={styles['overlay1']}></div>
         <h3>No products found in this archive</h3>
 
-        <Link href="/archieve"  className={styles['return']}><button>RETURN TO ARCIEVE</button></Link>
+        <Link href="/archieve"  className={styles['return']}><button>RETURN TO ARCHIVE</button></Link>
       </div>
     );
   }

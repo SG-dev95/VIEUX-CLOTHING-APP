@@ -48,7 +48,7 @@ className={styles['background-videos']} />
 
 <div className={styles['mother-intel']}>
 
-    We persue
+    We pursue
     <span className={styles['animated-words']}>
 <span>Mastery</span>
 <span>elevation</span>
@@ -135,7 +135,7 @@ className={styles['background-videos']} />
 
 
 <div  className={styles['disco']}>
-<h3 className={styles['disco1']}>DISCORVERY</h3>
+<h3 className={styles['disco1']}>DISCOVERY</h3>
   </div>
 
 <div className={styles['lists-items']}>
@@ -146,7 +146,7 @@ className={styles['background-videos']} />
 
   <div className={styles['lists4']}>
 <h2 className={styles['lists5']}>
-  Discorver </h2 ><p>Our</p>  
+  Discover </h2 ><p>Our</p>  
   </div>
 
   
@@ -172,9 +172,9 @@ className={styles['background-videos']} />
 
 <div className={styles['top-hight']}>
 <h3 className={styles['top1']}>
-  Top HightLights
+  Top HighLights
 </h3>
-<p className={styles['top2']}>Explore our fine and beutiful archieve  of different collections of dresses</p>
+<p className={styles['top2']}>Explore our fine and beautiful archive  of different collections of dresses</p>
 
 
 <div className={styles['hight']}>
@@ -252,7 +252,7 @@ className={styles['background-videos']} />
 <div className={styles['footer-group']}>
 
  <h2>Explore</h2>Our 
-  Peronal Collections 
+  Personal Collections 
   of Epic
     <span className={styles['footer-spans']}>
 <span>Formal </span>

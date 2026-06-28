@@ -30,7 +30,7 @@ className={styles['background-videos']} />
 <div className={styles['philosophy-side']}>
 <span className={styles['philosophy-one']}>
 In an era of the transient,
-lets build something that lasts. 
+let's build something that lasts. 
 
 </span>
 
