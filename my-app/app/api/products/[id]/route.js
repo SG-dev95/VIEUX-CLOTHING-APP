@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 
 function luxuryTitles(originalTitle, category) {
   if (category === "VINTAGE") return "Nero Distressed Canvas Silhouette";
@@ -29,17 +27,37 @@ function generateCatalogInMemory(rawProducts) {
     const description = item.description.toLowerCase(); 
     let assignedCategories = "";
 
+    // 1. VINTAGE
     if (title.includes('jacket') || title.includes('raincoat') || title.includes('windbreaker')) {
       assignedCategories = "VINTAGE";
-    } else if (title.includes('cotton') || title.includes('hoodie') || description.includes('fleece')) {
+    } 
+    // 2. OLD SCHOOL
+    else if (title.includes('hoodie') || description.includes('fleece') || title.includes('sweater')) {
       assignedCategories = "OLD SCHOOL";
-    } else if (title.includes('t-shirt') || title.includes('tee') || title.includes('graphic')) {
+    } 
+    // 3. INFORMAL
+    else if (title.includes('t-shirt') || title.includes('tee') || title.includes('graphic')) {
       assignedCategories = "INFORMAL";
-    } else if (title.includes('slim') || title.includes('fit') || title.includes('shirt') || title.includes('solid')) {
+    } 
+    // 4. FORMAL
+    else if (title.includes('dress') || title.includes('suit') || title.includes('blazer')) {
+      assignedCategories = "FORMAL";
+    }
+    // 5. CULTURAL
+    else if (title.includes('biker') || description.includes('wrap') || description.includes('detail')) {
+      assignedCategories = "CULTURAL";
+    }
+    // 6. MODERN
+    else if (description.includes('nylon') || description.includes('moisture') || description.includes('breathable')) {
+      assignedCategories = "MODERN";
+    }
+    // 7. CLASSIC
+    else if (title.includes('shirt') && (title.includes('slim') || title.includes('fit') || title.includes('solid'))) {
       assignedCategories = "CLASSIC";
-    } else {
-      const fallbacks = ["CASUAL", "MODERN"];
-      assignedCategories = fallbacks[index % fallbacks.length];
+    } 
+    // 8. CASUAL
+    else { 
+      assignedCategories = "CASUAL";
     }
 
     if (catalogData[assignedCategories]) {
@@ -50,7 +68,7 @@ function generateCatalogInMemory(rawProducts) {
         description: item.description,
         image: item.image,
         sizes: ['S', 'M', 'L', 'XL'],
-        colors: assignedCategories === "CLASSIC" || assignedCategories === "VINTAGE" 
+        colors: assignedCategories === "CLASSIC" || assignedCategories === "VINTAGE" || assignedCategories === "FORMAL"
           ? ["#000000", "#1A1A1A"] 
           : ["#FFFFFF", "#222222"]
       });
@@ -65,19 +83,29 @@ function generateCatalogInMemory(rawProducts) {
 
 export async function GET(request, { params }) {
   try {
-    
     const { id } = await params; 
     let catalog = null;
 
-    const filepath = path.join(process.cwd(), "vieux-cached-products.json");
-    
-    
-    if (fs.existsSync(filepath)) {
-      const fileContent = fs.readFileSync(filepath, 'utf-8');
-      catalog = JSON.parse(fileContent);
-    } else {
-      
-      console.log("JSON Cache absent on cloud instance disk. Re-processing array structure dynamically...");
+    // 🛡️ SERVERLESS GUARD: Only look for the local file on your computer
+    if (process.env.NODE_ENV === 'development') {
+      try {
+        const localFs = require('fs');
+        const localPath = require('path');
+        const filepath = localPath.join(process.cwd(), "vieux-cached-products.json");
+        
+        if (localFs.existsSync(filepath)) {
+          const fileContent = localFs.readFileSync(filepath, 'utf-8');
+          catalog = JSON.parse(fileContent);
+          console.log("💾 Read catalog successfully from local file cache system.");
+        }
+      } catch (fileSystemError) {
+        console.warn("Local cache file read bypassed:", fileSystemError.message);
+      }
+    }
+
+    // 🚀 VERCEL PRODUCTION REBUILD: If running on cloud environment, bypass disk file operations entirely
+    if (!catalog) {
+      console.log("☁️ Vercel instance: Re-processing category array structures inside runtime memory stream...");
       const res = await fetch('https://fakestoreapi.com/products');
       if (!res.ok) throw new Error("External api is unreachable");
       
@@ -85,7 +113,7 @@ export async function GET(request, { params }) {
       catalog = generateCatalogInMemory(rawProducts);
     }
 
-    
+    // Isolate single product
     let foundProduct = null;
     for (const section of catalog) {
       const match = section.cloths.find((item) => String(item.id) === String(id));
