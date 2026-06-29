@@ -21,7 +21,8 @@ const toggleMenu = (menuName) => {
   return (
 
    <div className="home">   
-<video  src={"/vid.mp4"}autoPlay 
+<video  src={"/vid.mp4"}
+autoPlay 
 loop muted 
 playsInline 
 className="background-video" />
