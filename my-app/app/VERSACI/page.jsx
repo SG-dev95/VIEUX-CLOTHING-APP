@@ -18,7 +18,7 @@ return(
        <div className={styles['tain']}>
         <h3>SORRY</h3>
         <p>VERSACI HAS YET TO BE CREATED</p>
-        <Link href="/archieve"  className={styles['return']}><button>RETURN TO ARCIEVE</button></Link>
+        <Link href="/archieve"  className={styles['return']}><button>RETURN TO ARHCIVE</button></Link>
         </div>
       </div>
 
