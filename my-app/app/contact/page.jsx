@@ -6,7 +6,6 @@ export default function Contact(){
 return(
 <div className={styles['contact-container']}>
 
-
 <video  src="./rain.mp4" 
 autoPlay 
 loop muted 

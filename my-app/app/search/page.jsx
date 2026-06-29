@@ -33,18 +33,29 @@ export default function Search() {
 
 
   useEffect(() => {
-    if (query.trim() === "") {
+    const normalizedQuery = query.trim().toLowerCase();
+
+    if (normalizedQuery === "") {
       setresults([]);
       return;
     }
-    
-    const searchkey = query.toLowerCase();
+
+    const searchTerms = normalizedQuery.split(/\s+/).filter(Boolean);
     const filtered = musterProduct.filter((product) => {
-     
-      const matchName = product.name?.toLowerCase().includes(searchkey);
-      const matchDesc = product.description?.toLowerCase().includes(searchkey);
-      return matchName || matchDesc;
+      const searchableText = [
+        product.name,
+        product.description,
+        product.categoryName,
+        ...(product.sizes || []),
+        ...(product.colors || []),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      return searchTerms.every((term) => searchableText.includes(term));
     });
+
     setresults(filtered);
   }, [query, musterProduct]);
 
