@@ -20,7 +20,7 @@ return(
 <div className={styles['main-container']}>
 
 
-<video  src="./fall.mp4" 
+<video  src="/fall.mp4" 
 autoPlay 
 loop muted 
 playsInline 

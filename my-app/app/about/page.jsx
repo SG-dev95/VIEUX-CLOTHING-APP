@@ -11,7 +11,7 @@ const [isactive,setisactive]=useState(false)
 
 
     <div className={styles['about-container']}>
-<video  src="./vide.MP4" 
+<video  src="/vide.MP4" 
 autoPlay 
 loop muted 
 playsInline 
