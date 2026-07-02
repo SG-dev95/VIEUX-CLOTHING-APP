@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export const dynamic = 'force-dynamic'; 
+export const dynamic = 'force-dynamic';
 
 function luxuryTitles(originalTitle, category) {
   if (category === "VINTAGE") return "Nero Distressed Canvas Silhouette";
@@ -13,6 +13,7 @@ function luxuryTitles(originalTitle, category) {
   const cleanTitle = originalTitle.split(' ').slice(0, 2).join(' ');
   return `Vieux Luxury ${category.charAt(0) + category.slice(1).toLowerCase()} - ${cleanTitle}`;
 }
+
 function generateCatalogInMemory(rawProducts) {
   const clothItems = rawProducts.filter(item => {
     const itemCategory = (item.category || "").toLowerCase();
@@ -72,18 +73,11 @@ export async function GET(request, { params }) {
   try {
     const { id } = await params;
 
-    console.log("📡 Cloud Pipeline: Fetching live data for product ID:", id);
-    const res = await fetch('https://fakestoreapi.com/products', {
-      headers: { 
-        'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-      }
+    const res = await fetch('https://raw.githubusercontent.com/Anas-Saber/FakeStoreAPI/main/products.json', {
+      headers: { 'Accept': 'application/json' }
     });
     
-    const contentType = res.headers.get("content-type");
-    if (!res.ok || !contentType || !contentType.includes("application/json")) {
-      return NextResponse.json({ error: "External live API unreachable at this moment" }, { status: 503 });
-    }
+    if (!res.ok) return NextResponse.json({ error: "Mirror network stream down" }, { status: 502 });
 
     const rawProducts = await res.json();
     const catalog = generateCatalogInMemory(rawProducts);
@@ -98,13 +92,12 @@ export async function GET(request, { params }) {
     }
 
     if (!foundProduct) {
-      return NextResponse.json({ error: "Product not found in live luxury category mapping" }, { status: 404 });
+      return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
     return NextResponse.json(foundProduct, { status: 200 });
 
   } catch (err) {
-    console.error("Live single product error:", err);
-    return NextResponse.json({ error: "Failed to resolve live product stream data" }, { status: 500 });
+    return NextResponse.json({ error: "Internal processing error" }, { status: 500 });
   }
 }

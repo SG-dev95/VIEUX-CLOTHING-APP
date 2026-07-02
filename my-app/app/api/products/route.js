@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export const dynamic = 'force-dynamic'; 
+export const dynamic = 'force-dynamic';
 
 function luxuryTitles(originalTitle, category) {
   if (category === "VINTAGE") return "Nero Distressed Canvas Silhouette";
@@ -16,28 +16,19 @@ function luxuryTitles(originalTitle, category) {
 
 export async function GET() {
   try {
-    console.log("📡 Cloud Pipeline: Fetching live API data...");
+    console.log("📡 Cloud Pipeline: Initiating high-availability apparel stream sync...");
     
- 
-    const res = await fetch('https://fakestoreapi.com/products', {
-      headers: { 
-        'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-      },
-      next: { revalidate: 0 } 
+    // 🚀 Switching to the rock-solid global CDN mirror endpoint of the clothing dataset
+    const res = await fetch('https://raw.githubusercontent.com/Anas-Saber/FakeStoreAPI/main/products.json', {
+      headers: { 'Accept': 'application/json' }
     });
 
-
-    const contentType = res.headers.get("content-type");
-    if (!res.ok || !contentType || !contentType.includes("application/json")) {
-      console.warn("⚠️ API rate-limited or sent bad data. Falling back to structured schema.");
-      const emptyCatalog = ["CLASSIC", "OLD SCHOOL", "VINTAGE", "MODERN", "CULTURAL", "CASUAL", "FORMAL", "INFORMAL"].map(cat => ({
-        categoryName: cat,
-        cloths: []
-      }));
-      return NextResponse.json(emptyCatalog, { status: 200 });
-    }
-const clothItems = rawProducts.filter(item => {
+    if (!res.ok) throw new Error("Backup repository mirror unreachable");
+    
+    const rawProducts = await res.json();
+    
+    // Convert to lowercase to guarantee perfectly resilient matching
+    const clothItems = rawProducts.filter(item => {
       const itemCategory = (item.category || "").toLowerCase();
       return itemCategory === "men's clothing" || itemCategory === "women's clothing";
     });
@@ -47,7 +38,7 @@ const clothItems = rawProducts.filter(item => {
       "CULTURAL": [], "CASUAL": [], "FORMAL": [], "INFORMAL": [],
     };
 
-    clothItems.forEach((item, index) => {
+    clothItems.forEach((item) => {
       const title = item.title.toLowerCase();
       const description = item.description.toLowerCase(); 
       let assignedCategories = "";
@@ -89,8 +80,6 @@ const clothItems = rawProducts.filter(item => {
       categoryName: catName,
       cloths: catalogData[catName]
     }));
-
-   
 
     return NextResponse.json(finalCatalog, { status: 200 });
 
