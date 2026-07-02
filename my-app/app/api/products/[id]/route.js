@@ -15,38 +15,14 @@ function luxuryTitles(originalTitle, category) {
 }
 
 function generateCatalogInMemory(rawProducts) {
-  const clothItems = rawProducts.filter(item => {
-    const itemCategory = (item.category || "").toLowerCase();
-    return itemCategory === "men's clothing" || itemCategory === "women's clothing";
-  });
-
   const catalogData = {
     "CLASSIC": [], "OLD SCHOOL": [], "VINTAGE": [], "MODERN": [],
     "CULTURAL": [], "CASUAL": [], "FORMAL": [], "INFORMAL": [],
   };
 
-  clothItems.forEach((item) => {
-    const title = item.title.toLowerCase();
-    const description = item.description.toLowerCase(); 
-    let assignedCategories = "";
-
-    if (title.includes('jacket') || title.includes('raincoat') || title.includes('windbreaker')) {
-      assignedCategories = "VINTAGE";
-    } else if (title.includes('hoodie') || description.includes('fleece') || title.includes('sweater')) {
-      assignedCategories = "OLD SCHOOL";
-    } else if (title.includes('t-shirt') || title.includes('tee') || title.includes('graphic')) {
-      assignedCategories = "INFORMAL";
-    } else if (title.includes('dress') || title.includes('suit') || title.includes('blazer')) {
-      assignedCategories = "FORMAL";
-    } else if (title.includes('biker') || description.includes('wrap') || description.includes('detail')) {
-      assignedCategories = "CULTURAL";
-    } else if (description.includes('nylon') || description.includes('moisture') || description.includes('breathable')) {
-      assignedCategories = "MODERN";
-    } else if (title.includes('shirt') && (title.includes('slim') || title.includes('fit') || title.includes('solid'))) {
-      assignedCategories = "CLASSIC";
-    } else { 
-      assignedCategories = "CASUAL";
-    }
+  rawProducts.forEach((item, index) => {
+    const categories = ["CLASSIC", "OLD SCHOOL", "VINTAGE", "MODERN", "CULTURAL", "CASUAL", "FORMAL", "INFORMAL"];
+    const assignedCategories = categories[index % categories.length];
 
     if (catalogData[assignedCategories]) {
       catalogData[assignedCategories].push({
@@ -54,7 +30,7 @@ function generateCatalogInMemory(rawProducts) {
         name: luxuryTitles(item.title, assignedCategories), 
         price: Math.round(item.price * 1.5),
         description: item.description,
-        image: item.image,
+        image: item.thumbnail, 
         sizes: ['S', 'M', 'L', 'XL'],
         colors: assignedCategories === "CLASSIC" || assignedCategories === "VINTAGE" || assignedCategories === "FORMAL"
           ? ["#000000", "#1A1A1A"] 
@@ -73,13 +49,26 @@ export async function GET(request, { params }) {
   try {
     const { id } = await params;
 
-    const res = await fetch('https://raw.githubusercontent.com/Anas-Saber/FakeStoreAPI/main/products.json', {
-      headers: { 'Accept': 'application/json' }
-    });
+    console.log(`📡 Cloud Pipeline: Syncing multi-category data for ID: ${id}`);
     
-    if (!res.ok) return NextResponse.json({ error: "Mirror network stream down" }, { status: 502 });
+    const [mensRes, womensRes, shoesRes] = await Promise.all([
+      fetch('https://dummyjson.com/products/category/mens-shirts'),
+      fetch('https://dummyjson.com/products/category/womens-dresses'),
+      fetch('https://dummyjson.com/products/category/mens-shoes')
+    ]);
+    
+    const [mensData, womensData, shoesData] = await Promise.all([
+      mensRes.json(),
+      womensRes.json(),
+      shoesRes.json()
+    ]);
 
-    const rawProducts = await res.json();
+    const rawProducts = [
+      ...(mensData.products || []),
+      ...(womensData.products || []),
+      ...(shoesData.products || [])
+    ];
+    
     const catalog = generateCatalogInMemory(rawProducts);
 
     let foundProduct = null;
@@ -92,12 +81,13 @@ export async function GET(request, { params }) {
     }
 
     if (!foundProduct) {
-      return NextResponse.json({ error: "Product not found" }, { status: 404 });
+      return NextResponse.json({ error: "Product mapping profile not found" }, { status: 404 });
     }
 
     return NextResponse.json(foundProduct, { status: 200 });
 
   } catch (err) {
-    return NextResponse.json({ error: "Internal processing error" }, { status: 500 });
+    console.error("Global Single Product ID Route Crash:", err);
+    return NextResponse.json({ error: "Failed to parse dynamic catalog item secure pipeline" }, { status: 404 });
   }
 }
