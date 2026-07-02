@@ -18,10 +18,13 @@ export async function GET() {
   try {
     console.log("📡 Cloud Pipeline: Fetching live API data...");
     
-   
+ 
     const res = await fetch('https://fakestoreapi.com/products', {
-      headers: { 'Accept': 'application/json' },
-      next: { revalidate: 0 }
+      headers: { 
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+      },
+      next: { revalidate: 0 } 
     });
 
 
