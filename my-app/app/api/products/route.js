@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import path from 'path';
+
+export const dynamic = 'force-dynamic'; 
 
 function luxuryTitles(originalTitle, category) {
   if (category === "VINTAGE") return "Nero Distressed Canvas Silhouette";
@@ -15,27 +16,25 @@ function luxuryTitles(originalTitle, category) {
 
 export async function GET() {
   try {
-    console.log("📡 Cloud Pipeline: Initiating external apparel sync stream...");
+    console.log("📡 Cloud Pipeline: Fetching live API data...");
     
+   
     const res = await fetch('https://fakestoreapi.com/products', {
       headers: { 'Accept': 'application/json' },
-      next: { revalidate: 60 } // Cache data for 60 seconds to mitigate API rate limits
+      next: { revalidate: 0 }
     });
 
-    // 🛡️ CRITICAL SAFETYS: Check if the response failed or returned an HTML error page
+
     const contentType = res.headers.get("content-type");
     if (!res.ok || !contentType || !contentType.includes("application/json")) {
-      console.warn("⚠️ FakeStore API is rate-limiting or down. Executing defensive layout fallback.");
-      
-      // Return a clean catalog data mapping instead of throwing a 500 error
-      const emptyCleanCatalog = ["CLASSIC", "OLD SCHOOL", "VINTAGE", "MODERN", "CULTURAL", "CASUAL", "FORMAL", "INFORMAL"].map(cat => ({
+      console.warn("⚠️ API rate-limited or sent bad data. Falling back to structured schema.");
+      const emptyCatalog = ["CLASSIC", "OLD SCHOOL", "VINTAGE", "MODERN", "CULTURAL", "CASUAL", "FORMAL", "INFORMAL"].map(cat => ({
         categoryName: cat,
         cloths: []
       }));
-      return NextResponse.json(emptyCleanCatalog, { status: 200 });
+      return NextResponse.json(emptyCatalog, { status: 200 });
     }
 
-    // Now safe to parse because we verified it's valid JSON data
     const rawProducts = await res.json();
     
     const clothItems = rawProducts.filter(
@@ -90,22 +89,12 @@ export async function GET() {
       cloths: catalogData[catName]
     }));
 
-    // 🛡️ LOCAL SYSTEM GUARD: Only attempt filesystem tasks if on your local machine
-    if (process.env.NODE_ENV === 'development') {
-      try {
-        const localFs = require('fs');
-        const filePath = path.join(process.cwd(), 'vieux-cached-products.json');
-        localFs.writeFileSync(filePath, JSON.stringify(finalCatalog, null, 2), 'utf-8'); 
-        console.log("💾 Local Environment: Updated backup json file.");
-      } catch (fsErr) {
-        console.warn("Local disk operation bypassed:", fsErr.message);
-      }
-    }
+   
 
     return NextResponse.json(finalCatalog, { status: 200 });
 
   } catch (error) {
-    console.error("Vercel Catalog Build Runtime Crash:", error); 
-    return NextResponse.json({ error: 'Failed to process apparel stream collection securely' }, { status: 500 });
+    console.error("Vercel Live API Processing Error:", error); 
+    return NextResponse.json({ error: 'Failed to stream live catalog data' }, { status: 500 });
   }
 }
