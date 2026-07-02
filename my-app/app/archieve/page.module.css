@@ -349,7 +349,7 @@ transition: all 0.3s ease;
     opacity: 1;
     background: rgba(0, 0, 0, 0.021);
     backdrop-filter:blur(20px);
-    z-index: 200;
+    z-index: 90;
 }
 .product-details img{
     position: absolute;
