@@ -86,7 +86,7 @@ export async function GET(request, { params }) {
     const { id } = await params; 
     let catalog = null;
 
-    // 🛡️ SERVERLESS GUARD: Only look for the local file on your computer
+    
     if (process.env.NODE_ENV === 'development') {
       try {
         const localFs = require('fs');
@@ -103,16 +103,23 @@ export async function GET(request, { params }) {
       }
     }
 
-    // 🚀 VERCEL PRODUCTION REBUILD: If running on cloud environment, bypass disk file operations entirely
+   
     if (!catalog) {
       console.log("☁️ Vercel instance: Re-processing category array structures inside runtime memory stream...");
-      const res = await fetch('https://fakestoreapi.com/products');
-      if (!res.ok) throw new Error("External api is unreachable");
+      const res = await fetch('https://fakestoreapi.com/products', {
+        headers: { 'Accept': 'application/json' }
+      });
       
-      const rawProducts = await res.json();
-      catalog = generateCatalogInMemory(rawProducts);
+     
+      const contentType = res.headers.get("content-type");
+      if (!res.ok || !contentType || !contentType.includes("application/json")) {
+        console.warn("⚠️ FakeStore API is rate-limiting the server container. Returning empty layout.");
+        catalog = [];
+      } else {
+        const rawProducts = await res.json();
+        catalog = generateCatalogInMemory(rawProducts);
+      }
     }
-
     // Isolate single product
     let foundProduct = null;
     for (const section of catalog) {
