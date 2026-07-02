@@ -37,12 +37,10 @@ export async function GET() {
       }));
       return NextResponse.json(emptyCatalog, { status: 200 });
     }
-
-    const rawProducts = await res.json();
-    
-    const clothItems = rawProducts.filter(
-      item => item.category === "men's clothing" || item.category === "women's clothing"
-    );
+const clothItems = rawProducts.filter(item => {
+      const itemCategory = (item.category || "").toLowerCase();
+      return itemCategory === "men's clothing" || itemCategory === "women's clothing";
+    });
 
     const catalogData = {
       "CLASSIC": [], "OLD SCHOOL": [], "VINTAGE": [], "MODERN": [],

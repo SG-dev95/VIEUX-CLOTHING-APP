@@ -13,11 +13,11 @@ function luxuryTitles(originalTitle, category) {
   const cleanTitle = originalTitle.split(' ').slice(0, 2).join(' ');
   return `Vieux Luxury ${category.charAt(0) + category.slice(1).toLowerCase()} - ${cleanTitle}`;
 }
-
 function generateCatalogInMemory(rawProducts) {
-  const clothItems = rawProducts.filter(
-    item => item.category === "men's clothing" || item.category === "women's clothing"
-  );
+  const clothItems = rawProducts.filter(item => {
+    const itemCategory = (item.category || "").toLowerCase();
+    return itemCategory === "men's clothing" || itemCategory === "women's clothing";
+  });
 
   const catalogData = {
     "CLASSIC": [], "OLD SCHOOL": [], "VINTAGE": [], "MODERN": [],
